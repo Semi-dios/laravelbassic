@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\CreateProjectRequest;
 use Illuminate\Http\Request;
 use App\Project;
 
@@ -14,7 +14,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects=Project::paginate(2);//15 default for pagina
+        $projects=Project::paginate(5);//15 default for pagina
         return view('projects.index',compact('projects'));
     }
 
@@ -29,16 +29,11 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store()
+    public function store(CreateProjectRequest $request)
     {
+        $fields= $request->validated();
 
-        Project::create([
-            'title'=> request('title'),
-            'url'=> request('url'),
-            'description'=> request('description'),
-        ]);
-
-
+         Project::create($fields);
        return redirect()->route('projects.index');
     }
 
