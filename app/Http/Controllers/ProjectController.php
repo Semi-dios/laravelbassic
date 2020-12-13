@@ -1,12 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Http\Requests\CreateProjectRequest;
+use App\Http\Requests\SaveProjectRequest;
 use Illuminate\Http\Request;
 use App\Project;
 
 class ProjectController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth')->except('index','show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,9 +23,11 @@ class ProjectController extends Controller
         return view('projects.index',compact('projects'));
     }
 
-    public function create(Request $request)
+    public function create()
     {
-        return view('projects.create');
+        return view('projects.create', [
+            'project' => new Project
+        ]);
     }
 
     /**
@@ -29,12 +36,12 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateProjectRequest $request)
+    public function store(SaveProjectRequest $request)
     {
         $fields= $request->validated();
 
          Project::create($fields);
-       return redirect()->route('projects.index');
+       return redirect()->route('projects.index')->with('status','new project');
     }
 
 
@@ -54,6 +61,15 @@ class ProjectController extends Controller
         ]);
     }
 
+    public function edit(Project $project)
+    {
+
+        return view('projects.edit', [
+            'project' => $project
+        ]);
+
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -61,9 +77,11 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Project $project, SaveProjectRequest $request)
     {
-        //
+        $project->update($request-> validated());
+
+        return redirect()->route('projects.show', $project)->with('status','updated project');;
     }
 
     /**
@@ -72,8 +90,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-        //
+        $project->delete();
+        return redirect()->route('projects.index')->with('status','deleted project');;
     }
 }

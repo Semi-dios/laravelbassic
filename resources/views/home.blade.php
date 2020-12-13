@@ -7,5 +7,9 @@ Bienvenid@
 <?php
     echo $name ?? 'invitado';
 ?>
+@auth
+
+{{ auth()->user()->name }}
+@endauth
 @endsection
 

@@ -20,7 +20,7 @@ class MessageController extends Controller
 
         Mail::to('meridianogrupo@gmail.com')->queue(new MessageReceived($message));
 
-        return 'Message sent';
+          return redirect()->back()->with('status','Received message');
 
     }
 }

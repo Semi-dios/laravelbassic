@@ -1,5 +1,5 @@
 @extends('layout')
-@section('title', 'Create')
+@section('title', 'Edit')
 
 @section('content')
 <div class="container">
@@ -8,16 +8,17 @@
 <div class="col-sm-12">
 <section>
     <div class="title">
-    <h3>Create Project</h3>
+    <h3>Edit Project: </h3>
     </div>
     <article>
         <div class="row">
-            @include ('partials.validation-errors')
+        @include ('partials.validation-errors')
             <div class="col-sm-12">
 
-                <form method="POST" action="{{ route('projects.store')}}">
+                <form method="POST" action="{{ route('projects.update', $project)}}">
+                 @method('PATCH')
 
-                    @include ('projects._formProject', ['btnText'=> 'Create'])
+                   @include ('projects._formProject',['btnText'=> 'Update'])
 
                 </form>
             </div>

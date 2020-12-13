@@ -2,9 +2,9 @@
 @section('title', 'Folder')
 @section('content')
 <h3>Folder</h3>
-
+@auth
 <a href="{{route('projects.create')}}">Add new project</a>
-
+@endauth
 <ul>
 <!--  @if($projects)
   @foreach($projects as $item)

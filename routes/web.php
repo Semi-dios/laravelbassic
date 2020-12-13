@@ -25,17 +25,26 @@ Route::view('/','home')->name('home');
 Route::view('/about','about')->name('about');
 Route::view('/contact','contact')->name('contact');
 
+Route::resource('projects','ProjectController')->names('projects')->parameters(['project']);
 
-
-Route::get('/projects', 'ProjectController@index')->name('projects.index');
+/* Route::get('/projects', 'ProjectController@index')->name('projects.index');
 Route::get('/projects/create', 'ProjectController@create')->name('projects.create');
-
-Route::get('/projects/{project}', 'ProjectController@show')->name('projects.show');
+Route::get('/projects/{project}/edit', 'ProjectController@edit')->name('projects.edit');
+Route::patch('/projects/{project}', 'ProjectController@update')->name('projects.update');
 Route::post('/projects', 'ProjectController@store')->name('projects.store');
+Route::get('/projects/{project}', 'ProjectController@show')->name('projects.show');
 
+
+Route::delete('/projects/{project}', 'ProjectController@destroy')->name('projects.destroy');*/
 
 
 /* form contact */
 Route::post('contact','MessageController@store')->name('message.store');
+
+
+
+Auth::routes(['register' => false]);
+
+
 
 

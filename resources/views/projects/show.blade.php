@@ -11,6 +11,17 @@
     <h3>{{ $project->title}}</h3>
     </div>
     <article>
+    @auth
+      <a href="{{route('projects.edit', $project)}}">Edit Project</a>
+         <form action="{{route('projects.destroy', $project)}}" method="POST">
+         @csrf @method('DELETE')
+            <div class="form-row">
+                <div class="form-group col-sm-12">
+                    <button>Delete</button>
+                </div>
+            </div>
+         </form>
+    @endauth
         <p>{{$project->description}}</p>
         <p>{{$project->created_at->diffForHumans()}}</p>
     </article>
