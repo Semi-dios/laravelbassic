@@ -5,7 +5,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
+    <ul class="navbar-nav ml-auto">
       <li class="nav-item    ">
         <a class="nav-link {{setActive('home')}}" href="{{ route('home') }}">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -19,12 +19,12 @@
         <a class="nav-link  {{setActive('contact') }}" href="{{route('contact')}}">Contact</a>
       </li>
       @guest
-      <li class="nav-item  ml-auto">
+      <li class="nav-item  ">
         <a class="nav-link {{setActive('login') }}" href="{{route('login')}}">Login</a>
       </li>
       @else
-      <li  class="nav-item ml-auto">
-        <a href="nav-link" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
+      <li  class="nav-item ">
+        <a class="nav-link mb-0" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a>
       </li>
       @endguest
 

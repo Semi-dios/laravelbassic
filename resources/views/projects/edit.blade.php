@@ -2,32 +2,20 @@
 @section('title', 'Edit')
 
 @section('content')
+
 <div class="container">
 
-<div class="row justify-content-center">
-<div class="col-sm-12">
-<section>
-    <div class="title">
-    <h3>Edit Project: </h3>
-    </div>
-    <article>
-        <div class="row">
-        @include ('partials.validation-errors')
-            <div class="col-sm-12">
-
-                <form method="POST" action="{{ route('projects.update', $project)}}">
-                 @method('PATCH')
-
-                   @include ('projects._formProject',['btnText'=> 'Update'])
+    <div class="row justify-content-center">
+        <div class="col-sm-12 col-lg-6 ">
+            <form method="POST" action="{{ route('projects.update', $project)}}"  class="form bg-white shadow rounded py-3 px-4 ">
+            <h3 class="display-4 ">Edit Project</h3>
+                <hr>
+                @method('PATCH')
+                    @include ('projects._formProject',['btnText'=> 'Update'])
 
                 </form>
-            </div>
         </div>
-    </article>
-</section>
-
-</div>
-</div>
+    </div>
 </div>
 
 @endsection

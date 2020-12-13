@@ -18,10 +18,11 @@
             <div class="form-row">
                 <div class="form-group col-sm-12">
                     <div class="form-heading">
-                        <h3 class="font-weight-bold text-black">FORM CONTACT</h3>
+                        <h3 class="font-weight-bold text-black display-4">Form Contact</h3>
                     </div>
                 </div>
             </div>
+            <hr>
             <div class="form-row">
                 <div class="form-group col-sm-12">
                     <label for="name">

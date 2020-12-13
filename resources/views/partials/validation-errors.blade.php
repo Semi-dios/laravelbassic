@@ -1,8 +1,9 @@
-<div class="col-sm-12">
+
     @if($errors->any())
-        <ul class="list-group">
+      <div class="alert alert-danger">
+      <ul class="list-group mb-0">
             @foreach($errors-> all() as $error)
-                <li class="list-item">
+                <li class="list-group-item">
                 <div class="alert alert-danger" role="alert">
                     <p>{{$error}}</p>
                 </div>
@@ -10,5 +11,6 @@
             @endforeach
         </ul>
 
+      </div>
     @endif
-</div>
+

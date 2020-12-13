@@ -6,25 +6,26 @@
 
 <div class="row justify-content-center">
 <div class="col-sm-12">
-<section>
-    <div class="title">
+<section class="bg-white p-5 shadow rounded">
+
     <h3>{{ $project->title}}</h3>
-    </div>
-    <article>
-    @auth
-      <a href="{{route('projects.edit', $project)}}">Edit Project</a>
-         <form action="{{route('projects.destroy', $project)}}" method="POST">
-         @csrf @method('DELETE')
-            <div class="form-row">
-                <div class="form-group col-sm-12">
-                    <button>Delete</button>
-                </div>
+    <p class="text-secondary">{{$project->description}}</p>
+    <p class="text-black-50">{{$project->created_at->diffForHumans()}}</p>
+    <article class="d-flex justify-content-between align-items-center">
+            <a class=" " href="{{route('projects.index')}}">Back</a>
+
+            @auth
+            <div class="btn-group btn-group-sm">
+            <a class="btn btn-primary "href="{{route('projects.edit', $project)}}">Edit Project</a>
+            <a class="btn btn-danger "href="" onclick="document.getElementById('delete-project').submit()">Delete Project</a>
             </div>
-         </form>
-    @endauth
-        <p>{{$project->description}}</p>
-        <p>{{$project->created_at->diffForHumans()}}</p>
+                <form action="{{route('projects.destroy', $project)}}" class="d-none" method="POST">
+                @csrf @method('DELETE')
+
+                </form>
+            @endauth
     </article>
+
 </section>
 
 </div>
